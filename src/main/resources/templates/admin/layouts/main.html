@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title th:if="${pageTitle !=null}" th:text="${pageTitle}"></title>
+    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
@@ -28,6 +28,6 @@
 <body>
     <header th:replace="~{admin/outlines/header::common}"></header>
     <main layout:fragment="content"></main>
-    <footer th:replace="~{admin/outlines/footer::common"></footer>
+    <footer th:replace="~{admin/outlines/footer::common}"></footer>
 </body>
 </html>
