@@ -4,7 +4,8 @@ server:
 spring:
   profiles:
     active: dev
-  #파일 업로드 용량 설정
+
+  # 파일 업로드 용량 설정
   servlet:
     multipart:
       maxFileSize: 20MB
@@ -14,10 +15,10 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:orcl
-    userName: PROJECT
+    username: PROJECT
     password: _aA123456
 
-  # Jpa설정
+  # JPA 설정
   jpa:
     properties:
       hibernate:
@@ -33,11 +34,10 @@ spring:
     cache: false
     prefix: file:src/main/resources/templates/
 
-  # 정적 자원 설정
+  # 정적 자원 설정(CSS, JS, 이미지)
   web:
     resources:
       staticLocations: file:src/main/resources/static/
-
 
   # 라이브 리로드 설정
   devtools:
@@ -53,7 +53,8 @@ logging:
           descriptor:
             sql: trace
 
-#파일 업로드 경로 설정
+
+# 파일 업로드 경로 설정
 file:
   upload:
     path: C:/uploads/

@@ -8,11 +8,9 @@ import org.springframework.http.HttpStatus;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JSONData<T>{
+public class JSONData<T> {
     private HttpStatus status = HttpStatus.OK;
-    private boolean success=true;
+    private boolean success = true;
     private T data;
     private String message;
-
-
 }

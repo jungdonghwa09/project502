@@ -2,7 +2,7 @@ server:
   port: 3000
 
 spring:
-  #파일 업로드 용량 설정
+  # 파일 업로드 용량 설정
   servlet:
     multipart:
       maxFileSize: 20MB
@@ -12,10 +12,10 @@ spring:
   datasource:
     driverClassName: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
-    userName: PROJECT
+    username: PROJECT
     password: _aA123456
 
-  # Jpa설정
+  # JPA 설정
   jpa:
     properties:
       hibernate:
@@ -31,6 +31,7 @@ spring:
     cache: true
     prefix: classpath:/templates/
 
+
 # 로거 설정
 logging:
   level:
@@ -40,7 +41,8 @@ logging:
           descriptor:
             sql: trace
 
-#파일 업로드 경로 설정
+
+# 파일 업로드 경로 설정
 file:
   upload:
     path: /home/project/uploads/

@@ -3,10 +3,10 @@ spring:
   datasource:
     driverClassName: org.h2.Driver
     url: jdbc:h2:mem:test
-    userName: sa
+    username: sa
     password:
 
-  # Jpa설정
+  # JPA 설정
   jpa:
     properties:
       hibernate:
@@ -25,4 +25,3 @@ logging:
         type:
           descriptor:
             sql: trace
-

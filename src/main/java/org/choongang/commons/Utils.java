@@ -6,29 +6,57 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.ResourceBundle;
+
 @Component
 @RequiredArgsConstructor
 public class Utils {
+
     private final HttpServletRequest request;
     private final HttpSession session;
-    public boolean isMobile(){
-        //모바일 수동전환 체크
+
+    private static final ResourceBundle commonsBundle;
+    private static final ResourceBundle validationBundle;
+    private static final ResourceBundle errorsBundle;
+
+    static{
+        commonsBundle = ResourceBundle.getBundle("messages.commons");
+        validationBundle = ResourceBundle.getBundle("messages.validations");
+    errorsBundle = ResourceBundle.getBundle("messages.errors");
+    }
+    public boolean isMobile() {
+        // 모바일 수동 전환 모드 체크
         String device = (String)session.getAttribute("device");
-        if(StringUtils.hasText(device)){
+        if (StringUtils.hasText(device)) {
             return device.equals("MOBILE");
         }
 
-        //요청헤더 user-agent이용
-        String ua = request.getHeader("User_Agent");
-        String pattern=".*(iphone|oPod|iPad|BlackBerry|Android|Windows|CE" +
-                "|LG|MOT|SAMSUNG|SonyEricsson).*";
-        return ua.matches(pattern);
+        // 요청 헤더 : User-Agent
+        String ua = request.getHeader("User-Agent");
 
+        String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
+
+       return ua.matches(pattern);
     }
 
-    public String tpl(String path){
+    public String tpl(String path) {
         String prefix = isMobile() ? "mobile/" : "front/";
 
         return prefix + path;
+    }
+    public static String getMessage(String code,String type){
+        type = StringUtils.hasText(type) ? type: "validations";
+        ResourceBundle bundle = null;
+        if(type.equals("commons")){
+            bundle=commonsBundle;
+        }else if(type.equals("errors")){
+            bundle=errorsBundle;
+        }else{
+            bundle = validationBundle;
+        }
+        return bundle.getString(code);
+    }
+    public static String getMessage(String code){
+        return getMessage(code,null);
     }
 }
